@@ -2,7 +2,7 @@ class config:
     BOT_TOKEN = "1979532614:AAH2w66o6716S0m9ocjkkdkPUa1ti5egDNo"
     APP_ID = "7693500"
     API_HASH = "8d82e2ae3917b001afb9a3e2c1ba2ce6"
-    DATABASE_URL = "postgresql://postgres:6Qiza4CC09mGdvMm4n0E@containers-us-west-3.railway.app:6203/railway"
+    DATABASE_URL = "postgres://xshmsvrdgbeqkb:0c3b76e18a7d746bd27a3d24bec33b89634a3f91091fab744e103c4e58e2b140@ec2-100-24-169-249.compute-1.amazonaws.com:5432/ddlt2bnru9og5"
     SUDO_USERS = "1952030175 1317820373" # Sepearted by space.
     DOWNLOAD_DIRECTORY = "./downloads/"
     G_DRIVE_CLIENT_ID = "262285355738-kpmavuv7ibhsg3l5bck6lakh9fe39ltr.apps.googleusercontent.com"
