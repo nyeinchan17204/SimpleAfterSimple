@@ -70,7 +70,7 @@ class Messages:
     
     AUTH_TEXT = "⛓️ **GoogleAccount ထည့်ၕရန် ဒီလင့်ကိုနိပ် . [URL]({}) and send the generated code here.**\n__Visit the URL > Allow permissions > you will get a code > copy it > Send it here__"
     
-    DOWNLOAD_TG_FILE = "📥 **ဖိုင်ဒေါင်းနေပါသည်....**\n**ဖိုင်အမည်:** ```{}```\n**ဖိုင်အရွယ်အစား:** ```{}```\n**MimeType:** ```{}```"
+    DOWNLOAD_TG_FILE = "📥 **...ဖိုင်ဒေါင်းနေပါသည်....**\n**ဖိုင်အမည်:** ```{}```\n**ဖိုင်အရွယ်အစား:** ```{}```\n**MimeType:** ```{}```"
     
     PARENT_SET_SUCCESS = '🆔✅ **သိမ်းဆည်းမည့်နေရာထည့်ပြီးပါပြီ..**\n__သင့်ရဲ့ folder id - {}\nပယ်ဖျက်လိုပါက__ ```/{} clear``` __ကိုသုံးပါ.__'
     
@@ -86,9 +86,9 @@ class Messages:
     
     PROVIDE_GDRIVE_URL = "**❗ ယခု Command ကို Google Drive လင့်နှင့်တွဲသုံးပါ.**\n__Usage - /{} (GDrive Link)__"
     
-    INSUFFICIENT_PERMISSONS = "❗ **ယခု ဖိုင်ကိုကူးရန်အတွင့် သင့်တွင်ခွင့်ပြုချက်မရှိပါ.**\n__File id - {}__"
+    INSUFFICIENT_PERMISSONS = "❗ **..ယခု ဖိုင်ကိုကူးရန်အတွင့် သင့်တွင်ခွင့်ပြုချက်မရှိပါ.**\n__File id - {}__"
     
-    DELETED_SUCCESSFULLY = "🗑️✅ **ဖိုင်ကို အောင်မြင်စွာဖျက်ပြီးပါပြီ.**\n__အောင်မြင်စွာဖျက်ပြီး !\nFile id - {}__"
+    DELETED_SUCCESSFULLY = "🗑️✅ **..ဖိုင်ကို အောင်မြင်စွာဖျက်ပြီးပါပြီ.**\n__အောင်မြင်စွာဖျက်ပြီး !\nFile id - {}__"
     
     WENT_WRONG = "⁉️ **ဂါးးးး: တစ်ခုခုမှားယွင်းနေပါသည်။**\n__Please try again later.__"
     
