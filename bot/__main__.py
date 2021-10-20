@@ -34,3 +34,4 @@ if __name__ == "__main__":
     LOGGER.info('Starting Bot !')
     app.run()
     LOGGER.info('Bot Stopped !')
+    app.send_message("me", "Greetings from **Pyrogram**!")
