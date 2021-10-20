@@ -21,13 +21,13 @@ class BotCommands:
   YtDl = ['ytdl']
 
 class Messages:
-    START_MSG = "**Hi there {}.**\n__I'm Google Drive Uploader Bot V3.You can use me to upload any file / video to Google Drive from direct link or Telegram Files.__\n__You can know more from /help.__ \n***Supported Direct Link***\nFacebook Video\nGoogle Drive\nYoutube\nSolidfiles\nAnonfiles\nMediafire\nZippyshare\nPornhub "
+    START_MSG = "**မင်္ဂလာပါ ။**\n__Telegram To Google Drive Bot ကနေကြိုဆိုပါတယ်။ ယခု Bot ကိုသုံးပြီး မိမိနှစ်သက်ရာ ဗွီဒီယို နှင် ဖိုင်များကို  Google Drive ကို Direct link ကနေ သို့မဟုတ်  Telegram လင့်ကနေပို့နိုင်ပါတယ်.__\n__ထပ်မံသိလိုပါက  /help.ကိုသုံးပါ__ \n***ပို့နိုင်သောလင့်များ***\nFacebook Video\nGoogle Drive\nYoutube\nSolidfiles\nAnonfiles\nMediafire\nZippyshare\nPornhub "
 
     HELP_MSG = [
         ".",
-        "**Google Drive Uploader**\n__I can upload files from direct link or Telegram Files to your Google Drive. All i need is to authenticate me to your Google Drive Account and send a direct download link or Telegram File.__\n\nI have more features... ! Wanna know about it ? Just walkthrough this tutorial and read the messages carefully.",
+        "**Telegram To GoogleDrive Bot**\n__ပထမဆုံး မိမိ GoogleDrive ကို ခွင့်ပြုချက်တောင်းပါ နောက်ပီး Telegram ဖိုင် သို့ Directlink ပို့ပါ ။__\n\n",
         
-        f"**Authenticating Google Drive**\n__Send the /{BotCommands.Authorize[0]} commmand and you will receive a URL, visit URL and follow the steps and send the received code here. Use /{BotCommands.Revoke[0]} to revoke your currently logged Google Drive Account.__\n\n**Note: I will not listen to any command or message (except /{BotCommands.Authorize[0]} command) until you authorize me.\nSo, Authorization is mandatory !**",
+        f"**GoogleDrive ခွင့်ပြုချက်ရယူရန်**\n__Send the /{BotCommands.Authorize[0]} ကိုနိပ်ပြီး လင့်မှတစ်ဆင့် မိမိ Google အကောင့်မှ ခွင့်ပြုပေးပါ ။. အကောင့်သစ်ပြောင်းရန် /{BotCommands.Revoke[0]} ကိုသုံးပါ.__\n\n**မှတ်ချက်:အောက်ပါ (except /{BotCommands.Authorize[0]} command) ကိုနိပ်ပီး GoogleDrive ခွင့်ပြချက်ကုဒ်များ ပို့ပေးပါ ။.\nမဟုတ်ပါက, မည်သည့်အရာမှ ကူးရမည်မဟုတ်ပါ။ !**",
         
         f"**Direct Links**\n__Send me a direct download link for a file and i will download it on my server and Upload it to your Google Drive Account. You can rename files before uploading to GDrive Account. Just send me the URL and new filename separated by ' | '.__\n\n**__Examples:__**\n```https://example.com/AFileWithDirectDownloadLink.mkv | New FileName.mkv```\n\n**Telegram Files**\n__To Upload telegram files in your Google drive Account just send me the file and i will download and upload it to your Google Drive Account. Note: Telegram Files Downloading are slow. it may take longer for big files.__\n\n**YouTube-DL Support**\n__Download files via youtube-dl.\nUse /{BotCommands.YtDl[0]} (YouTube Link/YouTube-DL Supported site link)__",
         
