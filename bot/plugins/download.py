@@ -239,9 +239,6 @@ def _telegram_file(client, message):
 #This is my modify
 @Client.on_message(filters.incoming & filters.private & filters.command(BotCommands.YtDl) & CustomFilters.auth_users)
 def download_handler(client: "Client", message: "types.Message"):
-    # check remaining quota
-    chat_id = message.chat.id
-    Redis().user_count(chat_id)
 
     if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
         logging.warning("%s, it's annoying me...🙄️ ", message.text)
