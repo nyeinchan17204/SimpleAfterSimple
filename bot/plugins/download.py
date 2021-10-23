@@ -27,6 +27,7 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from bot.helpers.ytdownloader import convert_flac, sizeof_fmt, upload_hook, ytdl_download
 from bot.helpers.ytutils import customize_logger
 from tgbot_ping import get_runtime
+from bot.helpers.constant import BotText
 
 @Client.on_message(filters.private & filters.incoming & filters.text & (filters.command(BotCommands.Download) | filters.regex('^(ht|f)tp*')) & CustomFilters.auth_users)
 def _download(client, message):
