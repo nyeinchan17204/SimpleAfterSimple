@@ -21,7 +21,7 @@ class BotCommands:
   YtDl = ['ytdl']
 
 class Messages:
-    START_MSG = "**မင်္ဂလာပါ ။**\n__Telegram To Google Drive Bot ကနေကြိုဆိုပါတယ်။ ယခု Bot ကိုသုံးပြီး မိမိနှစ်သက်ရာ ဗွီဒီယို နှင် ဖိုင်များကို  Google Drive ကို Direct link ကနေ သို့မဟုတ်  Telegram လင့်ကနေပို့နိုင်ပါတယ်.__\n__ထပ်မံသိလိုပါက  /help.ကိုသုံးပါ__ \n***ပို့နိုင်သောလင့်များ***\nFacebook Video\nGoogle Drive\nYoutube\nSolidfiles\nAnonfiles\nMediafire\nZippyshare\nPornhub "
+    START_MSG = "**မင်္ဂလာပါ ။**\n__Telegram To Google Drive Bot ကနေကြိုဆိုပါတယ် ယခု Bot ကိုသုံးပြီး မိမိနှစ်သက်ရာ ဗွီဒီယို နှင် ဖိုင်များကို  Google Drive ကို Direct link ကနေ သို့မဟုတ်  Telegram လင့်ကနေပို့နိုင်ပါတယ်.__\n__ထပ်မံသိလိုပါက  /help.ကိုသုံးပါ__ \n***ပို့နိုင်သောလင့်များ***\nFacebook Video\nGoogle Drive\nYoutube\nSolidfiles\nAnonfiles\nMediafire\nZippyshare\nPornhub "
 
     HELP_MSG = [
         ".",
