@@ -248,11 +248,8 @@ def download_handler(client: "Client", message: "types.Message"):
     logging.info("start %s", url)
 
     if not re.findall(r"^https?://", url.lower()):
-        Redis().update_metrics("bad_request")
         message.reply_text("I think you should send me a link.", quote=True)
         return
-
-    Redis().update_metrics("video_request")
     bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
     client.send_chat_action(chat_id, 'upload_video')
     temp_dir = tempfile.TemporaryDirectory()
@@ -287,7 +284,6 @@ def download_handler(client: "Client", message: "types.Message"):
                               reply_markup=markup,
                               **meta
                               )
-            Redis().update_metrics("video_success")
         bot_msg.edit_text('Download success!✅')
     else:
         client.send_chat_action(chat_id, 'typing')
