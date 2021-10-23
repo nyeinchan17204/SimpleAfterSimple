@@ -23,7 +23,6 @@ from bot import DOWNLOAD_DIRECTORY, LOGGER
 from bot.config import Messages, BotCommands
 from pyrogram.errors import FloodWait, RPCError
 #this is for you
-from pyrogram import Client, filters, types
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from bot.helpers.ytdownloader import convert_flac, sizeof_fmt, upload_hook, ytdl_download
 from bot.helpers.ytutils import customize_logger
