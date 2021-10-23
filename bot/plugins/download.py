@@ -237,7 +237,7 @@ def _telegram_file(client, message):
   os.remove(file_path)
 
 #This is my modify
-@Client.on_message(filters.command(["youtube"]))
+@Client.on_message(filters.incoming & filters.private & filters.command(BotCommands.YtDl) & CustomFilters.auth_users)
 def download_handler(client: "Client", message: "types.Message"):
     # check remaining quota
     chat_id = message.chat.id
