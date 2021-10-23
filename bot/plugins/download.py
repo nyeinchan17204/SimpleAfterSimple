@@ -220,7 +220,7 @@ def _download(client, message):
         logging.info("start %s", url)
 
         if not re.findall(r"^https?://", url.lower()):
-        sent_message = message.reply_text('I think you should send me a link.', quote=True)
+        #sent_message = message.reply_text('I think you should send me a link.', quote=True)
         return
         bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
         client.send_chat_action(chat_id, 'upload_video')
