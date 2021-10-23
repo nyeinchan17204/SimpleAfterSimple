@@ -23,12 +23,8 @@ else:
     import yt_dlp as ytdl
     from yt_dlp import DownloadError
 
-from config import ENABLE_VIP
-from limit import VIP, Redis
-from utils import apply_log_formatter
+from bot.helpers.ytutils import apply_log_formatter
 
-r = fakeredis.FakeStrictRedis()
-EXPIRE = 5
 apply_log_formatter()
 
 
@@ -149,22 +145,6 @@ def ytdl_download(url, tempdir, bm) -> dict:
     logging.info("%s - %s", url, response)
     if response["status"] is False:
         return response
-
-    for i in os.listdir(tempdir):
-        p: "str" = os.path.join(tempdir, i)
-        file_size = os.stat(p).st_size
-        if ENABLE_VIP:
-            remain, _, ttl = VIP().check_remaining_quota(chat_id)
-            result, err_msg = check_quota(file_size, chat_id)
-        else:
-            result, err_msg = True, ""
-        if result is False:
-            response["status"] = False
-            response["error"] = err_msg
-        else:
-            VIP().use_quota(bm.chat.id, file_size)
-            response["status"] = True
-            response["filepath"].append(p)
 
     # convert format if necessary
     convert_to_mp4(response)
