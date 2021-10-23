@@ -14,7 +14,7 @@ import tempfile
 from lk21.extractors.bypasser import Bypass
 from bs4 import BeautifulSoup
 from time import sleep
-from pyrogram import Client, filters, type
+from pyrogram import Client, filters, types
 from bot.helpers.sql_helper import gDriveDB, idsDB
 from bot.helpers.utils import CustomFilters, humanbytes
 from bot.helpers.downloader import download_file, utube_dl, download_fb
