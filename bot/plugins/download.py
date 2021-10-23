@@ -10,6 +10,7 @@ import logging
 import typing
 import pathlib
 import tempfile
+from apscheduler.schedulers.background import BackgroundScheduler
 
 from lk21.extractors.bypasser import Bypass
 from bs4 import BeautifulSoup
