@@ -209,56 +209,26 @@ def _download(client, message):
       else:
         sent_message = message.reply_text('🕵️**PORNHUB ERROR**', quote=True) 
    
-
-@Client.on_message(filters.private & filters.incoming & (filters.document | filters.audio | filters.video | filters.photo) & CustomFilters.auth_users)
-def _telegram_file(client, message):
-  user_id = message.from_user.id
-  sent_message = message.reply_text('🕵️**...ဖိုင်ကိုစစ်ဆေးနေပါသည်....**', quote=True)
-  if message.document:
-    file = message.document
-  elif message.video:
-    file = message.video
-  elif message.audio:
-    file = message.audio
-  elif message.photo:
-  	file = message.photo
-  	file.mime_type = "images/png"
-  	file.file_name = f"IMG-{user_id}-{message.message_id}.png"
-  sent_message.edit(Messages.DOWNLOAD_TG_FILE.format(file.file_name, humanbytes(file.file_size), file.mime_type))
-  LOGGER.info(f'Download:{user_id}: {file.file_id}')
-  try:
-    file_path = message.download(file_name=DOWNLOAD_DIRECTORY)
-    sent_message.edit(Messages.DOWNLOADED_SUCCESSFULLY.format(os.path.basename(file_path), humanbytes(os.path.getsize(file_path))))
-    msg = GoogleDrive(user_id).upload_file(file_path, file.mime_type)
-    sent_message.reply_text(msg,quote=True)
-  except RPCError:
-    sent_message.edit(Messages.WENT_WRONG)
-  LOGGER.info(f'Deleteing: {file_path}')
-  os.remove(file_path)
-
-#This is my modify
-@Client.on_message(filters.incoming & filters.private & filters.command(BotCommands.YtDl) & CustomFilters.auth_users)
-def download_handler(client: "Client", message: "types.Message"):
-
-    if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
+    if 'youtube' in link:
+      if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
         logging.warning("%s, it's annoying me...🙄️ ", message.text)
         return
 
-    url = re.sub(r'/ytdl\s*', '', message.text)
-    logging.info("start %s", url)
+        url = re.sub(r'/ytdl\s*', '', message.text)
+        logging.info("start %s", url)
 
-    if not re.findall(r"^https?://", url.lower()):
+        if not re.findall(r"^https?://", url.lower()):
         message.reply_text("I think you should send me a link.", quote=True)
         return
-    bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
-    client.send_chat_action(chat_id, 'upload_video')
-    temp_dir = tempfile.TemporaryDirectory()
+        bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
+        client.send_chat_action(chat_id, 'upload_video')
+         temp_dir = tempfile.TemporaryDirectory()
 
-    result = ytdl_download(url, temp_dir.name, bot_msg)
-    logging.info("Download complete.")
+        result = ytdl_download(url, temp_dir.name, bot_msg)
+          logging.info("Download complete.")
 
-    markup = InlineKeyboardMarkup(
-        [
+        markup = InlineKeyboardMarkup(
+          [
             [  # First row
                 InlineKeyboardButton(  # Generates a callback query when pressed
                     "audio",
@@ -289,8 +259,35 @@ def download_handler(client: "Client", message: "types.Message"):
         client.send_chat_action(chat_id, 'typing')
         tb = result["error"][0:4000]
         bot_msg.edit_text(f"Download failed!❌\n\n```{tb}```", disable_web_page_preview=True)
-
     temp_dir.cleanup
+    
+@Client.on_message(filters.private & filters.incoming & (filters.document | filters.audio | filters.video | filters.photo) & CustomFilters.auth_users)
+def _telegram_file(client, message):
+  user_id = message.from_user.id
+  sent_message = message.reply_text('🕵️**...ဖိုင်ကိုစစ်ဆေးနေပါသည်....**', quote=True)
+  if message.document:
+    file = message.document
+  elif message.video:
+    file = message.video
+  elif message.audio:
+    file = message.audio
+  elif message.photo:
+  	file = message.photo
+  	file.mime_type = "images/png"
+  	file.file_name = f"IMG-{user_id}-{message.message_id}.png"
+  sent_message.edit(Messages.DOWNLOAD_TG_FILE.format(file.file_name, humanbytes(file.file_size), file.mime_type))
+  LOGGER.info(f'Download:{user_id}: {file.file_id}')
+  try:
+    file_path = message.download(file_name=DOWNLOAD_DIRECTORY)
+    sent_message.edit(Messages.DOWNLOADED_SUCCESSFULLY.format(os.path.basename(file_path), humanbytes(os.path.getsize(file_path))))
+    msg = GoogleDrive(user_id).upload_file(file_path, file.mime_type)
+    sent_message.reply_text(msg,quote=True)
+  except RPCError:
+    sent_message.edit(Messages.WENT_WRONG)
+  LOGGER.info(f'Deleteing: {file_path}')
+  os.remove(file_path)
+
+    
 def get_metadata(video_path):
     width, height, duration = 1280, 720, 0
     try:
