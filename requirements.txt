@@ -1,6 +1,6 @@
 wget
 asyncio
-pyrogram==1.0.1
+pyrogram==1.2.9
 tgcrypto==1.2.2
 yt-dlp==2021.10.10
 oauth2client
