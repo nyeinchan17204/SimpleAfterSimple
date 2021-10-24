@@ -10,8 +10,10 @@ pySmartDL
 google-api-python-client
 google-auth-httplib2
 google-auth-oauthlib
-youtube_dl
+yt-dlp==2021.10.10
+youtube-dl==2021.6.6
 ffmpeg
+ffmpeg-python==0.2.0
 tenacity
 html5lib
 lk21
