@@ -66,9 +66,14 @@ def _download(client, message):
         client.send_chat_action(chat_id, 'upload_document')
         video_paths = result["filepath"]
         bot_msg.edit_text('Download complete. Sending now...')
+	for video_path in video_paths:
+            filename = pathlib.Path(video_path).name
+            remain = bot_text.remaining_quota_caption(chat_id)
+            size = sizeof_fmt(os.stat(video_path).st_size)
+            meta = get_metadata(video_path)
   try:
     sent_message.edit(Messages.DOWNLOADED_SUCCESSFULLY.format(os.path.basename(file_path), humanbytes(os.path.getsize(file_path))))
-		msg = GoogleDrive(user_id).upload_file(video_paths)
+		msg = GoogleDrive(user_id).upload_file(video_path)
 		sent_message.reply_text(msg,quote=True)
   except RPCError:
     sent_message.edit(Messages.WENT_WRONG)
