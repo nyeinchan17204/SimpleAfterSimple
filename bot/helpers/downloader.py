@@ -46,7 +46,8 @@ def mytube_dl(url):
 ytdl_opts = {
     'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title).50s.%(ext)s'),
     'noplaylist' : True,
-    'logger': LOGGER
+    'logger': LOGGER,
+     'quiet': True
   }
     formats = [
         "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio",
