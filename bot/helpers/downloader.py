@@ -43,7 +43,7 @@ def utube_dl(link):
     return False, 'Something went wrong! No video file exists on server.'
     #Adding
 def mytube_dl(url):
-ytdl_opts = {
+ydl_opts = {
     'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title).50s.%(ext)s'),
     'noplaylist' : True,
     'logger': LOGGER,
