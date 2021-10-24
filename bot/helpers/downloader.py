@@ -43,7 +43,7 @@ def utube_dl(link):
     return False, 'Something went wrong! No video file exists on server.'
     #Adding
 def mytube_dl(url):
-ydl_opts = {
+ytdl_opts = {
     'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title).50s.%(ext)s'),
     'noplaylist' : True,
     'logger': LOGGER,
@@ -57,11 +57,11 @@ ydl_opts = {
     # TODO it appears twitter download on macOS will fail. Don't know why...Linux's fine.
     for f in formats:
         if f:
-            ydl_opts["format"] = f
+            ytdl_opts["format"] = f
         try:
             logging.info("Downloading for %s with format %s", url, f)
-            with ytdl.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
+            with ytdl.YoutubeDL(ytdl_opts) as ytdl:
+                ytdl.download([url])
             break
 
         except DownloadError as e:
