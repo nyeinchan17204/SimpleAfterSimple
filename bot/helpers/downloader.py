@@ -44,7 +44,7 @@ def utube_dl(link):
     #Adding
 def mytube_dl(url):
 ytdl_opts = {
-    'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title).50s.%(ext)s'),
+    'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title)s'),
     'noplaylist' : True,
     'logger': LOGGER,
      'quiet': True
