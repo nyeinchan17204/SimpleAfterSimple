@@ -75,7 +75,12 @@ def _download(client, message):
 		msg = GoogleDrive(user_id).upload_file(video_path)
 		sent_message.reply_text(msg,quote=True)
 	os.remove(video_paths)
+else:
+        client.send_chat_action(chat_id, 'typing')
+        tb = result["error"][0:4000]
+        bot_msg.edit_text(f"Download failed!❌\n\n```{tb}```", disable_web_page_preview=True)
 
+    temp_dir.cleanup()
    #xxxxxx
 
 @Client.on_message(filters.private & filters.incoming & (filters.document | filters.audio | filters.video | filters.photo) & CustomFilters.auth_users)
