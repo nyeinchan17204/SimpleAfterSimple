@@ -41,6 +41,7 @@ def _download(client, message):
       sent_message.edit(msg)
  #Cheack youtube Link  
     if 'youtu' in link:
+chat_id = message.chat.id
       link = message.text
   #Adding youtube downloa code
 
