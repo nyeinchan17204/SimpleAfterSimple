@@ -71,13 +71,9 @@ def _download(client, message):
             remain = bot_text.remaining_quota_caption(chat_id)
             size = sizeof_fmt(os.stat(video_path).st_size)
             meta = get_metadata(video_path)
-  try:
-    sent_message.edit(Messages.DOWNLOADED_SUCCESSFULLY.format(os.path.basename(file_path), humanbytes(os.path.getsize(file_path))))
+
 		msg = GoogleDrive(user_id).upload_file(video_path)
 		sent_message.reply_text(msg,quote=True)
-  except RPCError:
-    sent_message.edit(Messages.WENT_WRONG)
-	LOGGER.info(f'Deleteing: {video_paths}')
 	os.remove(video_paths)
 
    #xxxxxx
