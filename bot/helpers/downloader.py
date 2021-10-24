@@ -44,20 +44,21 @@ def utube_dl(link):
     #Adding
 def mytube_dl(url):
 ytdl_opts = {
-    'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title)s'),
+    'outtmpl' : os.path.join(DOWNLOAD_DIRECTORY, '%(title).50s.%(ext)s'),
     'noplaylist' : True,
     'logger': LOGGER,
-     'quiet': True
+    'format': 'bestvideo+bestaudio/best',
+    'geo_bypass_country': 'IN'
   }
-    formats = [
-        "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio",
-        "bestvideo[vcodec^=avc]+bestaudio[acodec^=mp4a]/best[vcodec^=avc]/best",
-        ""
-    ]
+    #formats = [
+     #   "bestvideo[ext=mp4]+bestaudio[ext=m4a]/bestvideo+bestaudio",
+     #   "bestvideo[vcodec^=avc]+bestaudio[acodec^=mp4a]/best[vcodec^=avc]/best",
+    #    ""
+   # ]
     # TODO it appears twitter download on macOS will fail. Don't know why...Linux's fine.
-    for f in formats:
-        if f:
-            ytdl_opts["format"] = f
+   # for f in formats:
+       # if f:
+       #     ytdl_opts["format"] = f
         try:
             logging.info("Downloading for %s with format %s", url, f)
             with ytdl.YoutubeDL(ytdl_opts) as ytdl:
