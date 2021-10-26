@@ -1,4 +1,5 @@
 import re
+import logging
 from pyrogram import filters
 from bot.helpers.sql_helper import gDriveDB
 
@@ -24,3 +25,16 @@ def humanbytes(size: int) -> str:
         size /= power
         number += 1
     return str(round(size, 2)) + " " + dict_power_n[number] + 'B'
+
+def apply_log_formatter():
+    logging.basicConfig(
+        level=logging.INFO,
+        format='[%(asctime)s %(filename)s:%(lineno)d %(levelname).1s] %(message)s',
+        datefmt="%Y-%m-%d %H:%M:%S"
+    )
+
+
+def customize_logger(logger: "list"):
+    apply_log_formatter()
+    for log in logger:
+        logging.getLogger(log).setLevel(level=logging.WARNING)
