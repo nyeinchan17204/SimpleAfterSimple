@@ -54,7 +54,6 @@ def _download(client, message):
         message.reply_text("I think you should send me a link.", quote=True)
         return
     bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
-    client.send_chat_action(chat_id, 'upload_video')
     temp_dir = tempfile.TemporaryDirectory()
 
     result = ytdl_download(url, temp_dir.name, bot_msg)
@@ -72,7 +71,6 @@ def _download(client, message):
     )
 
     if result["status"]:
-        client.send_chat_action(chat_id, 'upload_document')
         video_paths = result["filepath"]
         bot_msg.edit_text('Download complete. Sending now...')
         for video_path in video_paths:
@@ -94,8 +92,8 @@ def _download(client, message):
         bot_msg.edit_text(f"Download failed!❌\n\n```{tb}```", disable_web_page_preview=True)
 
     temp_dir.cleanup()
-   
-
+ 
+  
 @Client.on_message(filters.private & filters.incoming & (filters.document | filters.audio | filters.video | filters.photo) & CustomFilters.auth_users)
 def _telegram_file(client, message):
   user_id = message.from_user.id
@@ -124,7 +122,7 @@ def _telegram_file(client, message):
 
 @Client.on_message(filters.incoming & filters.private & filters.command(BotCommands.YtDl) & CustomFilters.auth_users)
 def _ytdl(client, message):
-  user_id = message.from_user.id
+  user_id = message.chat.id
   if len(message.command) > 1:
     sent_message = message.reply_text('🕵️**Checking Link...**', quote=True)
     link = message.command[1]
