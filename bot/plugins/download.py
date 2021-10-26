@@ -6,6 +6,7 @@ import requests
 import wget
 import urllib.parse
 import logging
+import pathlib
 import tempfile
 import typing
 import ffmpeg
@@ -25,7 +26,7 @@ from bot.config import Messages, BotCommands
 from pyrogram.errors import FloodWait, RPCError
 
 @Client.on_message(filters.private & filters.incoming & filters.text & (filters.command(BotCommands.Download) | filters.regex('^(ht|f)tp*')) & CustomFilters.auth_users)
-def _download(client, message):
+def _download(client:"Client", message:"types.Message"):
   user_id = message.from_user.id
   if not message.media:
     sent_message = message.reply_text('🕵️**Checking link...**', quote=True)
