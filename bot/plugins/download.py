@@ -77,17 +77,16 @@ def _download(client:"Client", message:"types.Message"):
         bot_msg.edit_text('Download complete. Sending now...')
         for video_path in video_paths:
             filename = pathlib.Path(video_path).name
-            remain = bot_text.remaining_quota_caption(chat_id)
             size = sizeof_fmt(os.stat(video_path).st_size)
             meta = get_metadata(video_path)
             client.send_video(chat_id, video_path,
                               supports_streaming=True,
-                              caption=f"`{filename}`\n\n{url}\n\nsize: {size}\n\n{remain}",
+                              caption=f"`{filename}`\n\n{url}\n\nsize: {size}",
                               progress=upload_hook, progress_args=(bot_msg,),
                               reply_markup=markup,
                               **meta
                               )
-            Redis().update_metrics("video_success")
+      
         bot_msg.edit_text('Download success!✅')
     else:
         client.send_chat_action(chat_id, 'typing')
