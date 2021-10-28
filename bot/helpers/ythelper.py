@@ -116,7 +116,7 @@ def ytdl_download(url, tempdir, bm) -> dict:
     for i in os.listdir(tempdir):
         p: "str" = os.path.join(tempdir, i)
         file_size = os.stat(p).st_size
-            response["status"] = True
+            response["status"] == True
             response["filepath"].append(p)
 
     # convert format if necessary
