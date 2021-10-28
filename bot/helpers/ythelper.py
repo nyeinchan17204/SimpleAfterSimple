@@ -72,7 +72,7 @@ def convert_to_mp4(resp: dict):
 
 def ytdl_download(url, tempdir, bm) -> dict:
     chat_id = bm.chat.id
-    response = {"status": True, "error": "", "filepath": []}
+    response = {"status": "", "error": "", "filepath": []}
     output = os.path.join(tempdir, '%(title).50s.%(ext)s')
     ydl_opts = {
         'progress_hooks': [lambda d: download_hook(d, bm)],
@@ -116,7 +116,7 @@ def ytdl_download(url, tempdir, bm) -> dict:
     for i in os.listdir(tempdir):
         p: "str" = os.path.join(tempdir, i)
         file_size = os.stat(p).st_size
-            response["status"] == True
+            response["status"] = True
             response["filepath"].append(p)
 
     # convert format if necessary
