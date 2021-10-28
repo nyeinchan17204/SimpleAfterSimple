@@ -9,7 +9,7 @@ import fakeredis
 import filetype
 import yt_dlp as ytdl
 from yt_dlp import DownloadError
-from utils import apply_log_formatter
+from bot.helpers.utils import apply_log_formatter
 apply_log_formatter()
 
 
