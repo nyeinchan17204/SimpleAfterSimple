@@ -41,7 +41,6 @@ def _download(client, message):
       sent_message.edit(msg)
     if 'youtu' in link:
       # check remaining quota
-    chat_id = message.from_user.id
 
     if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
         logging.warning("%s, it's annoying me...🙄️ ", message.text)
