@@ -26,7 +26,7 @@ from bot.config import Messages, BotCommands
 from pyrogram.errors import FloodWait, RPCError
 
 @Client.on_message(filters.private & filters.incoming & filters.text & (filters.command(BotCommands.Download) | filters.regex('^(ht|f)tp*')) & CustomFilters.auth_users)
-def _download(client, message):
+def _download(client, message, messager: "types.Message"):
   user_id = message.from_user.id
   if not message.media:
     sent_message = message.reply_text('🕵️**Checking link...**', quote=True)
@@ -39,10 +39,12 @@ def _download(client, message):
       LOGGER.info(f'Copy:{user_id}: {link}')
       msg = GoogleDrive(user_id).clone(link)
       sent_message.edit(msg)
+      
+     ##youtubecode
     if 'youtu' in link:
-      # check remaining quota
+      chat_id = messager.chat.id
 
-    if message.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
+    if messager.chat.type != "private" and not message.text.lower().startswith("/ytdl"):
         logging.warning("%s, it's annoying me...🙄️ ", message.text)
         return
 
@@ -52,7 +54,9 @@ def _download(client, message):
     if not re.findall(r"^https?://", url.lower()):
         message.reply_text("I think you should send me a link.", quote=True)
         return
+      
     bot_msg: typing.Union["types.Message", "typing.Any"] = message.reply_text("Processing", quote=True)
+    client.send_chat_action(chat_id, 'upload_video')
     temp_dir = tempfile.TemporaryDirectory()
 
     result = ytdl_download(url, temp_dir.name, bot_msg)
@@ -70,20 +74,21 @@ def _download(client, message):
     )
 
     if result["status"]:
+        client.send_chat_action(chat_id, 'upload_document')
         video_paths = result["filepath"]
         bot_msg.edit_text('Download complete. Sending now...')
         for video_path in video_paths:
             filename = pathlib.Path(video_path).name
+            remain = bot_text.remaining_quota_caption(chat_id)
             size = sizeof_fmt(os.stat(video_path).st_size)
             meta = get_metadata(video_path)
             client.send_video(chat_id, video_path,
                               supports_streaming=True,
-                              caption=f"`{filename}`\n\n{url}\n\nsize: {size}",
+                              caption=f"`{filename}`\n\n{url}\n\nsize: {size}\n\n{remain}",
                               progress=upload_hook, progress_args=(bot_msg,),
                               reply_markup=markup,
                               **meta
                               )
-      
         bot_msg.edit_text('Download success!✅')
     else:
         client.send_chat_action(chat_id, 'typing')
