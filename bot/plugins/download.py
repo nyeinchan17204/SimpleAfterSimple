@@ -19,7 +19,7 @@ from bot.helpers.sql_helper import gDriveDB, idsDB
 from bot.helpers.utils import CustomFilters, humanbytes
 from bot.helpers.downloader import download_file, utube_dl
 from bot.helpers.ythelper import convert_flac, sizeof_fmt, upload_hook, ytdl_download
-from utils import customize_logger
+from bot.helpers.utils import customize_logger
 from bot.helpers.gdrive_utils import GoogleDrive 
 from bot import DOWNLOAD_DIRECTORY, LOGGER
 from bot.config import Messages, BotCommands
